@@ -1,1 +1,73 @@
-<p>main works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Pozos</title>
+    <link rel="stylesheet" href="main.component.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <button onclick="window.location.href='formulario.html'">Crear</button>
+            <div class="unit-options">
+                <label>
+                    <input type="radio" name="unit" value="barriles" checked> Barriles
+                </label>
+                <label>
+                    <input type="radio" name="unit" value="galones"> Galones
+                </label>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Ubicación</th>
+                        <th>Estado</th>
+                        <th class="production">Producción Diaria</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Pozo A</td>
+                        <td>Zona 1</td>
+                        <td class="active">Activo</td>
+                        <td>1000 Barriles</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Pozo B</td>
+                        <td>Zona 2</td>
+                        <td class="inactive">Inactivo</td>
+                        <td>0 Barriles</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Pozo C</td>
+                        <td>Zona 3</td>
+                        <td class="active">Activo</td>
+                        <td>1500 Barriles</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats">
+            <div class="stat-item">
+                Activos/Inactivos: <span class="highlight">2/1</span>
+            </div>
+            <div class="stat-item">
+                Producción Total Diaria: <span class="highlight">2500 Barriles</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

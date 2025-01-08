@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-right: 2px solid #000;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 10px;
+    background-color: #00cc00;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.sidebar .unit-options {
+    margin-top: 20px;
+}
+
+.unit-options label {
+    display: block;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.main-content {
+    width: 60%;
+    padding: 20px;
+}
+
+.main-content table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.main-content th, .main-content td {
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: center;
+}
+
+.main-content th {
+    background-color: #add8e6;
+}
+
+.main-content .active {
+    color: green;
+}
+
+.main-content .inactive {
+    color: red;
+}
+
+.stats {
+    width: 20%;
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-left: 2px solid #000;
+}
+
+.stats .stat-item {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #000;
+}
+
+.highlight {
+    background-color: gold;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.production {
+    background-color: #00cc00;
+    color: white;
+}
