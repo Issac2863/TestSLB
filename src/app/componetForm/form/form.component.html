@@ -1,45 +1,70 @@
 <div class="form-container">
     <h2>Ingreso de Nuevo Pozo</h2>
-    <form action="procesar_pozo.php" method="POST">
-        <div class="form-group">
-            <label for="pozo-id">ID del Pozo</label>
-            <input type="text" id="pozo-id" name="pozo_id" required>
+    <form [formGroup]="pozoForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="pozo-id">ID del Pozo</label>
+        <input type="text" id="pozo-id" formControlName="pozo_id" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="pozo-nombre">Nombre del Pozo</label>
+        <input type="text" id="pozo-nombre" formControlName="pozo_nombre" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="pozo-ubicacion">Ubicación</label>
+        <input type="text" id="pozo-ubicacion" formControlName="pozo_ubicacion" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="pozo-estado">Estado</label>
+        <select id="pozo-estado" formControlName="pozo_estado" required>
+          <option value="activo">Activo</option>
+          <option value="inactivo">Inactivo</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="produccion-cantidad">Cantidad de Producción</label>
+        <input
+          type="number"
+          id="produccion-cantidad"
+          formControlName="produccion_cantidad"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label>Unidad de Producción</label>
+        <div class="unit-options">
+          <label>
+            <input
+              type="radio"
+              formControlName="unidad_produccion"
+              value="barriles"
+              checked
+            />
+            Barriles
+          </label>
+          <label>
+            <input type="radio" formControlName="unidad_produccion" value="galones" />
+            Galones
+          </label>
+          <label>
+            <input type="radio" formControlName="unidad_produccion" value="litros" />
+            Litros
+          </label>
         </div>
+      </div>
+  
+      <div class="form-group">
+        <button type="submit" [disabled]="pozoForm.invalid">Registrar Pozo</button>
+    </div>
 
-        <div class="form-group">
-            <label for="pozo-nombre">Nombre del Pozo</label>
-            <input type="text" id="pozo-nombre" name="pozo_nombre" required>
-        </div>
-
-        <div class="form-group">
-            <label for="pozo-ubicacion">Ubicación</label>
-            <input type="text" id="pozo-ubicacion" name="pozo_ubicacion" required>
-        </div>
-
-        <div class="form-group">
-            <label for="pozo-estado">Estado</label>
-            <select id="pozo-estado" name="pozo_estado" required>
-                <option value="activo">Activo</option>
-                <option value="inactivo">Inactivo</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="produccion-cantidad">Cantidad de Producción</label>
-            <input type="number" id="produccion-cantidad" name="produccion_cantidad" required>
-        </div>
-
-        <div class="form-group">
-            <label>Unidad de Producción</label>
-            <div class="unit-options">
-                <label><input type="radio" name="unidad_produccion" value="barriles" checked> Barriles</label>
-                <label><input type="radio" name="unidad_produccion" value="galones"> Galones</label>
-                <label><input type="radio" name="unidad_produccion" value="litros"> Litros</label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <button type="submit" >Registrar Pozo</button>
-        </div>
+    <div class="form-group">
+        <button [routerLink]="['/']">Tabla</button>
+    </div>
+      
     </form>
-</div>
+  </div>
+  

@@ -34,20 +34,29 @@ export class MainComponent implements OnInit {
   constructor(private pozosService: PozosService) {}
 
   ngOnInit(): void {
+    this.loadPozos();
+  }
+  
+  loadPozos(): void {
     this.pozosService.getPozos().subscribe({
       next: (data) => {
         this.pozos = data;
-
-        this.activos = this.pozos.filter((pozo) => pozo.estado === 'activo').length;
-        this.inactivos = this.pozos.filter((pozo) => pozo.estado === 'inactivo').length;
-        this.produccionTotal = this.pozos.reduce(
-          (total, pozo) => total + Number(pozo.produccion_diaria),
-          0
-        );
+        console.log('Pozos cargados:', this.pozos);
       },
       error: (error) => {
-        console.error('Error al obtener los datos:', error);
+        console.error('Error al cargar los pozos:', error);
       },
     });
+  }
+  
+  actualizarEstadisticas(): void {
+    this.activos = this.pozos.filter((pozo) => pozo.estado === 'activo').length;
+    this.inactivos = this.pozos.filter((pozo) => pozo.estado === 'inactivo').length;
+    this.produccionTotal = this.pozos.reduce(
+      (total, pozo) => total + Number(pozo.produccionDiaria),
+      0
+    );
+  
+    console.log(`Activos: ${this.activos}, Inactivos: ${this.inactivos}, Producción Total: ${this.produccionTotal} Barriles`);
   }
 }
