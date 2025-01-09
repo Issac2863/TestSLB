@@ -11,9 +11,9 @@ interface Pozo {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class OilService {
+export class PozosService {
   private apiUrl = 'http://localhost:3000/pozos';
 
   constructor(private http: HttpClient) {}
