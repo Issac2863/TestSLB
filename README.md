@@ -1,59 +1,45 @@
-# TestSLB
+# Proyecto de Gestión de Pozos Petroleros
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+Sitio web que permite gestionar pozos petroleros que incluye un **frontend** (Angular), un **backend** (Node.js con Express), y una base de datos **PostgreSQL**.
 
-## Development server
+---
+## **Características Principales**
+* Gestión de Pozos: Crear, leer, actualizar y eliminar pozos petroleros.
+* Porcentaje de pozos activos e inactivos.
+* Producción diaria total de pozos activos.
+* Interfaz Reactiva: Cambios en los estados de los pozos reflejados en tiempo real(menos el señalar el cambio de estado, se debe actualizar la pagina).
 
-To start a local development server, run:
+## **Requisitos Previos**
 
+Tener instalado en su computadora/laptop
+1. **Node.js** (v16 o superior): [Descargar aquí](https://nodejs.org/)
+2. **PostgreSQL** (v13 o superior): [Descargar aquí](https://www.postgresql.org/download/)
+3. **Angular CLI** (v18 o superior): 
+   ```bash
+   npm install -g @angular/cli
+
+## **Clonar el Repositorio**
+
+git clone https://github.com/tu-usuario/proyecto-pozos.git
+cd proyecto-pozos
+
+## **Configurar la Base de Datos**
+
+Inicia tu servidor de PostgreSQL.
+* Crea una base de datos llamada pozos_db:
+  Copiar código
+  CREATE DATABASE pozos_db;
+* Abrir archivo init.sql y ejecutar
+  
+## **Instalar Dependencias**
+
+Ingresar a por medio de la terminal 
+  * PosoPetrolero\TestSLB>
+  * Ejecutar el siguiente comando para iniciar el backend
 ```bash
-ng serve
-```
+npm run start:backend
+  * En una nueva terminal ejecutar para iniciar el frontend
+    ```bash
+    ng serve
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
