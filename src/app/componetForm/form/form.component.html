@@ -2,11 +2,6 @@
     <h2>Ingreso de Nuevo Pozo</h2>
     <form [formGroup]="pozoForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="pozo-id">ID del Pozo</label>
-        <input type="text" id="pozo-id" formControlName="pozo_id" required />
-      </div>
-  
-      <div class="form-group">
         <label for="pozo-nombre">Nombre del Pozo</label>
         <input type="text" id="pozo-nombre" formControlName="pozo_nombre" required />
       </div>
@@ -35,36 +30,15 @@
       </div>
   
       <div class="form-group">
-        <label>Unidad de Producción</label>
-        <div class="unit-options">
-          <label>
-            <input
-              type="radio"
-              formControlName="unidad_produccion"
-              value="barriles"
-              checked
-            />
-            Barriles
-          </label>
-          <label>
-            <input type="radio" formControlName="unidad_produccion" value="galones" />
-            Galones
-          </label>
-          <label>
-            <input type="radio" formControlName="unidad_produccion" value="litros" />
-            Litros
-          </label>
-        </div>
-      </div>
-  
-      <div class="form-group">
         <button type="submit" [disabled]="pozoForm.invalid">Registrar Pozo</button>
-    </div>
-
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <button [routerLink]="['/']">Tabla</button>
     </div>
-      
     </form>
   </div>
+  
+
+
+  
   

@@ -30,6 +30,9 @@ export class MainComponent implements OnInit {
   activos: number = 0;
   inactivos: number = 0;
   produccionTotal: number = 0;
+  activosPorcentaje: number = 0;
+  inactivosPorcentaje: number = 0;
+
 
   constructor(private pozosService: PozosService) {}
 
@@ -42,6 +45,7 @@ export class MainComponent implements OnInit {
       next: (data) => {
         this.pozos = data;
         console.log('Pozos cargados:', this.pozos);
+        this.actualizarEstadisticas(); // Calcula los valores al cargar los datos
       },
       error: (error) => {
         console.error('Error al cargar los pozos:', error);
@@ -50,13 +54,42 @@ export class MainComponent implements OnInit {
   }
   
   actualizarEstadisticas(): void {
+    const totalPozos = this.pozos.length;
+  
+    // Calcula la cantidad de pozos activos e inactivos
     this.activos = this.pozos.filter((pozo) => pozo.estado === 'activo').length;
     this.inactivos = this.pozos.filter((pozo) => pozo.estado === 'inactivo').length;
-    this.produccionTotal = this.pozos.reduce(
-      (total, pozo) => total + Number(pozo.produccionDiaria),
-      0
-    );
   
-    console.log(`Activos: ${this.activos}, Inactivos: ${this.inactivos}, Producción Total: ${this.produccionTotal} Barriles`);
+    // Calcula los porcentajes
+    this.activosPorcentaje = totalPozos > 0 ? (this.activos / totalPozos) * 100 : 0;
+    this.inactivosPorcentaje = totalPozos > 0 ? (this.inactivos / totalPozos) * 100 : 0;
+  
+    // Calcula la producción total diaria solo para pozos activos
+    this.produccionTotal = this.pozos
+      .filter((pozo) => pozo.estado === 'activo')
+      .reduce((total, pozo) => {
+        const produccion = Number(pozo.produccion_diaria);
+        return isNaN(produccion) ? total : total + produccion;
+      }, 0);
+  
+    console.log(`Activos: ${this.activos} (${this.activosPorcentaje}%), Inactivos: ${this.inactivos} (${this.inactivosPorcentaje}%), Producción Total: ${this.produccionTotal} Barriles`);
+  }
+  
+
+  cambiarEstado(pozo: any): void {
+    const nuevoEstado = pozo.estado === 'activo' ? 'inactivo' : 'activo';
+  
+    this.pozosService.updatePozoEstado(pozo.id, nuevoEstado).subscribe({
+      next: (response) => {
+        console.log(`Estado del pozo ${pozo.id} actualizado a ${nuevoEstado}`);
+        // Actualiza el estado localmente para reflejar los cambios en la tabla
+        pozo.estado = nuevoEstado;
+        this.actualizarEstadisticas(); // Recalcula las estadísticas
+      },
+      error: (error) => {
+        console.error('Error al actualizar el estado del pozo:', error);
+        alert('Error al cambiar el estado. Inténtelo de nuevo.');
+      },
+    });
   }
 }

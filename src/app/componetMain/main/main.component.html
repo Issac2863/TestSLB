@@ -37,43 +37,44 @@
     </div>
   </div> 
 
-    
-    <div class="main-content">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Ubicación</th>
-            <th>Producción Diaria</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let pozo of pozos" [appResaltarEstado]="pozo.estado">
-            <td>{{ pozo.id }}</td>
-            <td>{{ pozo.nombre }}</td>
-            <td>{{ pozo.ubicacion }}</td>
-            <td>{{ pozo.produccion_diaria | conversionProduccion: unidadSeleccionada }}</td>
-            <td>{{ pozo.estado }}</td>
-          </tr>
-        </tbody>
-      </table>
-      
-    </div>
+  <div class="main-content">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Ubicación</th>
+          <th>Producción Diaria</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pozo of pozos" [appResaltarEstado]="pozo.estado">
+          <td>{{ pozo.id }}</td>
+          <td>{{ pozo.nombre }}</td>
+          <td>{{ pozo.ubicacion }}</td>
+          <td>{{ pozo.produccion_diaria | conversionProduccion: unidadSeleccionada }}</td>
+          <td>
+            <button (click)="cambiarEstado(pozo)">{{ pozo.estado }}</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    
-    <div class="stats">
-      <div class="stat-item">
-        Activos: <span class="highlight">{{ activos }}</span>
-      </div>
-      <div class="stat-item">
-        Inactivos: <span class="highlight">{{ inactivos }}</span>
-      </div>
-      <div class="stat-item">
-        Producción Total Diaria: <span class="highlight">{{ produccionTotal }} Barriles</span>
-      </div>
-    </div>    
+  
+  <div class="stats">
+    <div class="stat-item">
+      Activos: <span class="highlight">{{ activos }} ({{ activosPorcentaje.toFixed(2) }}%)</span>
+    </div>
+    <div class="stat-item">
+      Inactivos: <span class="highlight">{{ inactivos }} ({{ inactivosPorcentaje.toFixed(2) }}%)</span>
+    </div>
+    <div class="stat-item">
+      Producción Total Diaria: <span class="highlight">{{ produccionTotal }} Barriles</span>
+    </div>
+  </div>
+   
 </div>
 
      
