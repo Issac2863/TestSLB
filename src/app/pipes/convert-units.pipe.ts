@@ -1,17 +1,27 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'convertUnits'
+  name: 'conversionProduccion',
+  standalone: true,
 })
 export class ConvertUnitsPipe implements PipeTransform {
-  transform(value: number, unit: 'barriles' | 'galones' | 'litros'): string {
-    const conversionRates = {
-      barriles: 1,
-      galones: 42, // 1 barril = 42 galones
-      litros: 159 // 1 barril = 159 litros
-    };
+  transform(value: any, unidad: 'barriles' | 'galones' | 'litros'): string {
+    // Convierte el valor a número si es necesario
+    const numero = Number(value);
 
-    const convertedValue = value * conversionRates[unit];
-    return `${convertedValue.toFixed(2)} ${unit}`;
+    // Si el valor no es un número válido, retorna un mensaje predeterminado
+    if (isNaN(numero)) {
+      return 'Valor no válido';
+    }
+
+    switch (unidad) {
+      case 'galones':
+        return `${(numero * 42).toFixed(2)} galones`;
+      case 'litros':
+        return `${(numero * 159).toFixed(2)} litros`;
+      case 'barriles':
+      default:
+        return `${numero.toFixed(2)} barriles`;
+    }
   }
 }

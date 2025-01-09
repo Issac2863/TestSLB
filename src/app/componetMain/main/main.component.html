@@ -1,16 +1,41 @@
-<div class="container">
-    
-    <div class="sidebar">
-        <button [routerLink]="['/form']">Crear</button>
-        <div class="unit-options">
-            <label>
-                <input type="radio" name="unit" value="barriles" checked> Barriles
-            </label>
-            <label>
-                <input type="radio" name="unit" value="galones"> Galones
-            </label>
-        </div>
+<div class="container">  
+
+  <div class="sidebar">
+    <button [routerLink]="['/form']">Crear</button>
+    <div class="unit-options">
+      <label>
+        <input
+          type="radio"
+          name="unit"
+          value="barriles"
+          [(ngModel)]="unidadSeleccionada"
+          (change)="actualizarUnidad()"
+          checked
+        />
+        Barriles
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="unit"
+          value="galones"
+          [(ngModel)]="unidadSeleccionada"
+          (change)="actualizarUnidad()"
+        />
+        Galones
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="unit"
+          value="litros"
+          [(ngModel)]="unidadSeleccionada"
+          (change)="actualizarUnidad()"
+        />
+        Litros
+      </label>
     </div>
+  </div> 
 
     
     <div class="main-content">
@@ -25,26 +50,30 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let pozo of pozos">
+          <tr *ngFor="let pozo of pozos" [appResaltarEstado]="pozo.estado">
             <td>{{ pozo.id }}</td>
             <td>{{ pozo.nombre }}</td>
             <td>{{ pozo.ubicacion }}</td>
-            <td>{{ pozo.produccionDiaria }}</td>
+            <td>{{ pozo.produccion_diaria | conversionProduccion: unidadSeleccionada }}</td>
             <td>{{ pozo.estado }}</td>
           </tr>
         </tbody>
       </table>
+      
     </div>
 
     
     <div class="stats">
-        <div class="stat-item">
-            Activos/Inactivos: <span class="highlight">2/1</span>
-        </div>
-        <div class="stat-item">
-            Producción Total Diaria: <span class="highlight">2500 Barriles</span>
-        </div>
-    </div>
+      <div class="stat-item">
+        Activos: <span class="highlight">{{ activos }}</span>
+      </div>
+      <div class="stat-item">
+        Inactivos: <span class="highlight">{{ inactivos }}</span>
+      </div>
+      <div class="stat-item">
+        Producción Total Diaria: <span class="highlight">{{ produccionTotal }} Barriles</span>
+      </div>
+    </div>    
 </div>
 
      
